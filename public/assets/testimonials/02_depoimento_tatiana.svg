@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 293" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E11D48"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Phone Mockup Container Background -->
+  <rect width="420" height="293" rx="20" fill="#0B141A"/>
+
+  <!-- Subtle WhatsApp Chat Wallpaper Pattern (Doodle background simulated) -->
+  <g opacity="0.04" stroke="#FFFFFF" stroke-width="1.2" fill="none">
+    <circle cx="60" cy="140" r="14"/>
+    <rect x="180" y="120" width="20" height="20" rx="4"/>
+    <path d="M320 120 l15 25 l-30 0 Z"/>
+    <circle cx="280" cy="220" r="12"/>
+    <path d="M80 230 q10 -15 25 0"/>
+  </g>
+
+  <!-- WhatsApp Top Header Bar -->
+  <rect width="420" height="68" rx="20" fill="#1F2C34"/>
+  <rect y="48" width="420" height="20" fill="#1F2C34"/> <!-- Flatten bottom corners of header -->
+  <line x1="0" y1="68" x2="420" y2="68" stroke="#2A3942" stroke-width="0.8"/>
+
+  <!-- Back Arrow Icon -->
+  <g transform="translate(14, 25)" stroke="#AEBAC1" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4 L4 12 L12 20"/>
+  </g>
+
+  <!-- User Avatar -->
+  <g transform="translate(42, 14)">
+    <circle cx="20" cy="20" r="20" fill="url(#avatarGrad)" stroke="#2A3942" stroke-width="1.5"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#F8FAFC" text-anchor="middle">
+      TA
+    </text>
+  </g>
+
+  <!-- Contact Name & Phone Privacy -->
+  <g transform="translate(92, 22)">
+    <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="15" font-weight="600" fill="#E9EDEF">
+      Tatiana
+    </text>
+    <g transform="translate(0, 20)">
+      <text x="0" y="9" font-family="monospace" font-size="11" fill="#8696A0">
+        +55 11 •••••-••••
+      </text>
+      <rect x="95" y="-2" width="62" height="14" rx="4" fill="#00A884" fill-opacity="0.2"/>
+      <text x="126" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9.5" fill="#25D366" font-weight="bold" text-anchor="middle">
+        VERIFICADO
+      </text>
+    </g>
+  </g>
+
+  <!-- Header Right Icons (Video, Phone, Menu) -->
+  <g transform="translate(320, 24)" stroke="#AEBAC1" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Camera icon -->
+    <path d="M0 6 l10 -5 l0 18 l-10 -5 Z"/>
+    <rect x="-14" y="2" width="14" height="16" rx="3"/>
+    <!-- Call icon -->
+    <path d="M32 3 q6 0 10 5 q2 3 1 7 q-3 7 -10 10 q-4 1 -7 -1 q-5 -4 -5 -10 q0 -8 11 -11 Z" transform="scale(0.8) translate(10, 0)"/>
+    <!-- Menu 3 dots -->
+    <circle cx="70" cy="4" r="1.5" fill="#AEBAC1"/>
+    <circle cx="70" cy="10" r="1.5" fill="#AEBAC1"/>
+    <circle cx="70" cy="16" r="1.5" fill="#AEBAC1"/>
+  </g>
+
+  <!-- Date Pill (HOJE) -->
+  <g transform="translate(180, 75)">
+    <rect x="-30" y="0" width="60" height="19" rx="7" fill="#182229"/>
+    <text x="0" y="13" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="10" font-weight="500" fill="#8696A0" text-anchor="middle">
+      HOJE
+    </text>
+  </g>
+
+  <!-- Message Bubbles -->
+  
+        <g transform="translate(14, 90)">
+            <!-- Bubble Background -->
+            <path d="M 12 0 L 370 0 Q 380 0 380 10 L 380 58 Q 380 68 370 68 L 12 68 Q 2 68 2 58 L 2 10 Q 2 0 12 0 Z" fill="#202C33"/>
+            <!-- Speech Tail for first bubble -->
+            <path d='M2 6 L-6 0 L2 14 Z' fill='#202C33'/>
+            <text x="26" y="24" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14.5" fill="#E9EDEF" font-weight="400">
+                <tspan x="26" dy="0">Muito boa a live. Agradeço a</tspan><tspan x="26" dy="18">oportunidade.</tspan>
+            </text>
+            
+        </g>
+        
+        <g transform="translate(14, 166)">
+            <!-- Bubble Background -->
+            <path d="M 12 0 L 370 0 Q 380 0 380 10 L 380 89 Q 380 99 370 99 L 12 99 Q 2 99 2 89 L 2 10 Q 2 0 12 0 Z" fill="#202C33"/>
+            <!-- Speech Tail for first bubble -->
+            
+            <text x="26" y="24" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="14.5" fill="#E9EDEF" font-weight="400">
+                <tspan x="26" dy="0">Tirou muitas dúvidas cruciais que eu</tspan><tspan x="26" dy="18">tinha sobre a moradia e os primeiros</tspan><tspan x="26" dy="18">passos.</tspan>
+            </text>
+            
+            <text x="350" y="89" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" fill="#8696A0" text-anchor="end">22:14</text>
+            <path d="M356 83 l3 3 l7 -7 M361 83 l3 3 l7 -7" stroke="#53BDEB" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            
+        </g>
+        
+
+  <!-- Outer phone border -->
+  <rect width="420" height="293" rx="20" fill="none" stroke="#2A3942" stroke-width="2"/>
+</svg>

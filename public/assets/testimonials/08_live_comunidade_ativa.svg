@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" width="100%" height="100%">
+  <rect width="420" height="320" rx="20" fill="#0B141A"/>
+  
+  <!-- Header Bar -->
+  <rect width="420" height="64" rx="20" fill="#1F2C34"/>
+  <rect y="44" width="420" height="20" fill="#1F2C34"/>
+  <line x1="0" y1="64" x2="420" y2="64" stroke="#2A3942" stroke-width="0.8"/>
+
+  <!-- Live Indicator -->
+  <g transform="translate(18, 22)">
+    <circle cx="8" cy="8" r="6" fill="#EF4444" />
+    <circle cx="8" cy="8" r="10" fill="#EF4444" fill-opacity="0.3"/>
+    <text x="26" y="13" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">
+      TRANSMISSÃO AO VIVO · CHAT DA COMUNIDADE
+    </text>
+  </g>
+
+  <!-- Live Comments Stream -->
+  <!-- Comment 1 -->
+  <g transform="translate(16, 78)">
+    <rect width="388" height="42" rx="10" fill="#182229" stroke="#2A3942" stroke-width="0.8"/>
+    <circle cx="22" cy="21" r="13" fill="#F59E0B"/>
+    <text x="22" y="25" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0F172A" text-anchor="middle">JG</text>
+    <text x="44" y="18" font-family="sans-serif" font-size="12" font-weight="600" fill="#FBBF24">July G.</text>
+    <text x="44" y="32" font-family="sans-serif" font-size="12" fill="#E2E8F0">Live maravilhosa!!!! 👏👏👏</text>
+    <text x="360" y="26" font-family="sans-serif" font-size="10" fill="#64748B">21:44</text>
+  </g>
+
+  <!-- Comment 2 -->
+  <g transform="translate(16, 126)">
+    <rect width="388" height="42" rx="10" fill="#182229" stroke="#2A3942" stroke-width="0.8"/>
+    <circle cx="22" cy="21" r="13" fill="#10B981"/>
+    <text x="22" y="25" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0F172A" text-anchor="middle">MB</text>
+    <text x="44" y="18" font-family="sans-serif" font-size="12" font-weight="600" fill="#34D399">Moisés B.</text>
+    <text x="44" y="32" font-family="sans-serif" font-size="12" fill="#E2E8F0">Obrigado pela live!!! Muita clareza.</text>
+    <text x="360" y="26" font-family="sans-serif" font-size="10" fill="#64748B">21:45</text>
+  </g>
+
+  <!-- Comment 3 -->
+  <g transform="translate(16, 174)">
+    <rect width="388" height="42" rx="10" fill="#182229" stroke="#2A3942" stroke-width="0.8"/>
+    <circle cx="22" cy="21" r="13" fill="#38BDF8"/>
+    <text x="22" y="25" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0F172A" text-anchor="middle">RM</text>
+    <text x="44" y="18" font-family="sans-serif" font-size="12" font-weight="600" fill="#38BDF8">Rafael M.</text>
+    <text x="44" y="32" font-family="sans-serif" font-size="12" fill="#E2E8F0">Top 🚀 Vamos com tudo!</text>
+    <text x="360" y="26" font-family="sans-serif" font-size="10" fill="#64748B">21:46</text>
+  </g>
+
+  <!-- Comment 4 -->
+  <g transform="translate(16, 222)">
+    <rect width="388" height="42" rx="10" fill="#182229" stroke="#2A3942" stroke-width="0.8"/>
+    <circle cx="22" cy="21" r="13" fill="#A855F7"/>
+    <text x="22" y="25" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0F172A" text-anchor="middle">DP</text>
+    <text x="44" y="18" font-family="sans-serif" font-size="12" font-weight="600" fill="#C084FC">Darlan P.</text>
+    <text x="44" y="32" font-family="sans-serif" font-size="12" fill="#E2E8F0">Top demais, clareza total na rota!</text>
+    <text x="360" y="26" font-family="sans-serif" font-size="10" fill="#64748B">21:47</text>
+  </g>
+
+  <!-- Bottom interactive status bar -->
+  <g transform="translate(16, 276)">
+    <rect width="388" height="32" rx="8" fill="#1F2C34" stroke="#2A3942" stroke-width="0.8"/>
+    <text x="14" y="20" font-family="sans-serif" font-size="11" fill="#94A3B8">Chat ao vivo verificado da Confraria Europa</text>
+    <text x="374" y="20" font-family="sans-serif" font-size="11" font-weight="bold" fill="#10B981" text-anchor="end">● 100% REAL</text>
+  </g>
+
+  <rect width="420" height="320" rx="20" fill="none" stroke="#2A3942" stroke-width="2"/>
+</svg>

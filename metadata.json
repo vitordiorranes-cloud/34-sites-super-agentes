@@ -1,0 +1,8 @@
+{
+  "name": "5 sites + Esquadrão COD-E | Super Agentes ",
+  "description": "Máquina de vendas oficial do Esquadrão COD-E por Vitor Diorranes — posicionamento, inteligência de travessia e internacionalização para a Espanha.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

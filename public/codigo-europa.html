@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Europa · COD-E | Esquadrão dos 7 Super Agentes</title>
+  <meta name="description" content="O time de 7 Super Agentes de IA que planeja, valida e executa sua travessia legal para a Espanha em 24 meses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #13213F;
+      --navy-deep: #0C1527;
+      --red: #A31E22;
+      --red-bright: #DC2626;
+      --cream: #F8F5EF;
+      --cream-card: #FAF7F2;
+      --gold: #D4AF37;
+      --amber: #F59E0B;
+      --gray: #4A453E;
+      --line: #E4DDCF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--cream);
+      color: #1B1B18;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 90px;
+    }
+
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .text-center { text-align: center; }
+
+    @keyframes pulseCtaUrgency {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px rgba(220, 38, 38, 0.7);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 45px rgba(239, 68, 68, 0.95);
+      }
+    }
+
+    /* Botão CTA Oficial com movimento convidativo */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--red-bright), var(--red));
+      color: #FFFFFF !important;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      border-radius: 16px;
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      box-shadow: 0 8px 30px rgba(220, 38, 38, 0.7);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      animation: pulseCtaUrgency 2.2s infinite ease-in-out;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 50px rgba(220, 38, 38, 1);
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    /* City Row Card with Small Photo */
+    .city-card-small {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .city-card-small:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      border-color: rgba(163, 30, 34, 0.4);
+    }
+
+    .city-thumb {
+      width: 90px;
+      height: 90px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+    }
+
+    .agent-card {
+      background: #131D33;
+      border: 2px solid #334155;
+      border-radius: 20px;
+      padding: 20px;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .agent-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .agent-card.featured {
+      border-color: var(--red);
+      box-shadow: 0 0 25px rgba(163, 30, 34, 0.4);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #121A2D;
+      border: 2px solid #475569;
+      border-radius: 24px;
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0A101D;
+      border-top: 2px solid var(--red-bright);
+      padding: 12px 20px;
+      z-index: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr !important; }
+      .sticky-bar { flex-direction: column; gap: 8px; text-align: center; }
+      .btn-cta { width: 100%; font-size: 15px; padding: 15px 20px; }
+      .city-card-small { flex-direction: column; }
+      .city-thumb { width: 100%; height: 140px; }
+    }
+
+    /* Ribbon & Deliver (Inserções Cirúrgicas Estratégicas - Didático & Mobile First) */
+    .ribbon{background:var(--navy);color:var(--cream);padding:14px 0;border-bottom:3px solid var(--red);}
+    .ribbon .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center;max-width:1000px;margin:0 auto;padding:0 20px;}
+    .ribbon .rb-tag{font-family:system-ui,-apple-system,sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.12em;
+      text-transform:uppercase;color:#FCD34D;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.4);
+      padding:6px 14px;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;}
+    .ribbon p{font-family:system-ui,-apple-system,sans-serif;font-size:.88rem;line-height:1.45;margin:0;max-width:44em;
+      color:rgba(247,243,236,.95);}
+    .ribbon p b{color:#FFF;}
+    @media(max-width:640px){
+      .ribbon{padding:12px 0;}
+      .ribbon .wrap{gap:8px;}
+      .ribbon p{font-size:.84rem;}
+    }
+
+    .deliver{background:var(--cream);border-top:1px solid var(--line);padding:50px 0 65px;}
+    .deliver .wrap{max-width:620px;margin:0 auto;padding:0 20px;text-align:center;}
+    .deliver .gift-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:30px;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);color:#065F46;font-family:system-ui,-apple-system,sans-serif;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+    .deliver h2{font-family:Georgia,serif;font-size:28px;line-height:1.2;color:var(--navy);margin-bottom:8px;}
+    .deliver .subhead{font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.5;color:var(--gray);max-width:420px;margin:0 auto 24px;}
+    
+    .deliver-card{background:#FFFFFF;border:2px solid rgba(19,33,63,0.12);border-radius:20px;padding:22px;box-shadow:0 10px 25px rgba(19,33,63,0.06);text-align:left;margin-bottom:24px;}
+    .deliver-agent-row{display:flex;align-items:center;gap:18px;margin-bottom:18px;}
+    .agent-thumb-wrap{position:relative;width:92px;height:92px;border-radius:16px;overflow:hidden;border:2px solid #F59E0B;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.12);background:#0C1527;}
+    .agent-thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .agent-gift-tag{position:absolute;top:4px;right:4px;background:#F59E0B;color:#000;font-size:11px;padding:2px 4px;border-radius:4px;line-height:1;}
+    .agent-desc-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+    .agent-desc-head .agent-pill{background:var(--navy);color:#FCD34D;font-family:monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.08em;}
+    .agent-desc-head .agent-badge{background:#FEF3C7;color:#92400E;font-family:monospace;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;}
+    .agent-info h3{font-family:Georgia,serif;font-size:17px;color:var(--navy);margin:0 0 2px;}
+    .agent-info p{font-family:system-ui,-apple-system,sans-serif;font-size:12px;color:var(--gray);margin:0;}
+
+    .deliver-bullets{display:flex;flex-direction:column;gap:10px;font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.45;color:#1B1B18;background:#FBF9F5;padding:14px 16px;border-radius:12px;border:1px solid var(--line);margin-bottom:18px;}
+    .deliver-bullets .b-item{display:flex;align-items:flex-start;gap:8px;}
+    .deliver-bullets .b-item .check{color:#059669;font-weight:bold;font-size:14px;flex-shrink:0;}
+    .deliver-bullets .b-item span b{color:var(--navy);}
+
+    .btn-download{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;text-align:center;text-decoration:none;
+      background:#059669;color:#FFFFFF;font-family:system-ui,-apple-system,sans-serif;font-weight:800;
+      font-size:15px;letter-spacing:.03em;text-transform:uppercase;padding:16px 20px;border-radius:12px;
+      box-shadow:0 8px 20px rgba(5,150,105,0.25);transition:all .2s ease;cursor:pointer;}
+    .btn-download:hover{background:#047857;transform:translateY(-2px);box-shadow:0 12px 24px rgba(5,150,105,0.35);}
+    .btn-download-note{font-family:monospace;font-size:11px;color:var(--gray);text-align:center;margin-top:8px;}
+
+    .bridge{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);text-align:center;}
+    .bridge p{font-family:Georgia,serif;font-size:14px;line-height:1.6;color:var(--gray);
+      max-width:440px;margin:0 auto 16px;}
+    .bridge p b{color:var(--navy);}
+    .btn-bridge{display:inline-block;width:100%;max-width:380px;text-align:center;text-decoration:none;
+      background:var(--red);color:#FFFFFF;font-family:system-ui,-apple-system,sans-serif;font-weight:800;
+      font-size:15px;text-transform:uppercase;letter-spacing:.04em;padding:15px 22px;border-radius:12px;
+      box-shadow:0 8px 22px rgba(163,30,34,0.28);transition:all .2s ease;cursor:pointer;}
+    .btn-bridge:hover{background:#B91C1C;transform:translateY(-2px);box-shadow:0 12px 26px rgba(163,30,34,0.38);}
+    .btn-bridge-note{font-family:monospace;font-size:11px;color:var(--gray);margin-top:7px;}
+
+    @media(max-width:520px){
+      .deliver-agent-row{flex-direction:column;text-align:center;}
+      .agent-desc-head{justify-content:center;}
+      .deliver-card{padding:16px;}
+      .btn-download{font-size:14px;padding:14px 16px;}
+      .btn-bridge{font-size:14px;padding:14px 16px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ 0. TARJA DO MATERIAL (PRESENTE AGENTE 34) ═══════════ -->
+  <div class="ribbon">
+    <div class="wrap">
+      <span class="rb-tag">🎁 PRESENTE 100% GRATUITO</span>
+      <p>
+        O <b>Agente 34</b> (Buscador de Empregos) liberou o guia <b>5 Canais pra Começar na Espanha</b>. Baixe o PDF grátis no final da página!
+      </p>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <header style="padding: 50px 0 60px; background: linear-gradient(180deg, #FAF7F2 0%, #F4EFE6 100%); border-bottom: 1px solid var(--line);">
+    <div class="container text-center" style="max-width: 900px; margin: 0 auto;">
+      <span style="display: inline-block; font-family: monospace; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); background: rgba(163,30,34,0.1); padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;">
+        O Esquadrão Código Europa · COD-E
+      </span>
+      <h1 style="font-size: 42px; line-height: 1.15; color: var(--navy); margin-bottom: 18px;">
+        Não é uma viagem.<br>
+        É uma mudança de vida.<br>
+        <span style="color: var(--red);">E de geração.</span>
+      </h1>
+      <p style="font-size: 18px; color: var(--gray); margin-bottom: 24px; line-height: 1.6; max-width: 750px; margin-left: auto; margin-right: auto;">
+        A escola do seu filho. A rua por onde ele volta a pé à noite sem você olhar no retrovisor com medo. O passaporte que ele carrega no bolso para 27 países da União Europeia.
+      </p>
+
+      <div style="background: #FFFFFF; border-left: 4px solid var(--red); padding: 14px 20px; border-radius: 8px; margin: 0 auto 30px; max-width: 700px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+        <p style="font-family: Georgia, serif; font-size: 17px; color: var(--navy); font-weight: 700; font-style: italic;">
+          &ldquo;Um voo dura onze horas. Essa decisão dura três gerações. Seja o herói da sua própria jornada.&rdquo;
+        </p>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- ESPAÇO VSL GIGANTE: VÍDEO EM ALTO DESTAQUE SEM BARRA DE CONTROLE -->
+      <!-- ======================================================== -->
+      <div id="vsl-player-container" style="max-width: 1040px; margin: 32px auto 28px; background: #080E1C; border: 3px solid #334155; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.65); position: relative;">
+        <!-- BARRA SUPERIOR DA VSL -->
+        <div style="background: #0D1830; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; color: #FFF; font-size: 12px; border-bottom: 1px solid #334155; flex-wrap: wrap; gap: 8px;">
+          <span style="color: #F59E0B; font-family: monospace; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+            🔴 APRESENTAÇÃO OFICIAL · ESQUADRÃO COD-E
+          </span>
+          <span style="background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border: 1px solid rgba(16, 185, 129, 0.4); padding: 2px 10px; border-radius: 20px; font-size: 11px; font-family: monospace; font-weight: bold;">
+            🔒 Transmissão Contínua
+          </span>
+        </div>
+
+        <!-- CONTAINER DO VÍDEO (16:9 RESPONSIVO) COM BLOQUEIO DE INTERAÇÃO APÓS O PLAY -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;" id="vsl-screen">
+          <iframe id="vsl-iframe" src="https://player.vimeo.com/video/1225405238?controls=0&title=0&byline=0&portrait=0&sidedock=0&keyboard=0&pip=0&dnt=1&playsinline=1" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" title="Apresentação do Esquadrão Código Europa" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          
+          <!-- Camada de Bloqueio Transparente (Impede pausa ou retrocesso) -->
+          <div id="vsl-blocker" style="display: none; position: absolute; top:0; left:0; width:100%; height:100%; z-index: 10; cursor: default; background: transparent;"></div>
+
+          <!-- Capa de Play Gigante -->
+          <div id="vsl-cover" onclick="iniciarVsl()" style="position: absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at center, rgba(15,23,42,0.8) 0%, rgba(0,0,0,0.95) 100%); z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; padding: 20px;">
+            <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #DC2626, #EF4444); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 50px rgba(220,38,38,0.9); margin-bottom: 16px; border: 3px solid #FCD34D;">
+              <div style="width: 0; height: 0; border-top: 16px solid transparent; border-bottom: 16px solid transparent; border-left: 26px solid #FFF; margin-left: 6px;"></div>
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.2); color: #FCD34D; border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 14px; border-radius: 20px; font-family: monospace; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px;">
+              CLIQUE PARA INICIAR A APRESENTAÇÃO
+            </div>
+            <div style="color: #FFF; font-size: 22px; font-weight: 900; margin-bottom: 6px;">
+              Descubra a rota completa do Código Europa
+            </div>
+            <div style="color: #94A3B8; font-size: 13px;">
+              🔊 Áudio em alta definição · Transmissão oficial contínua
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function iniciarVsl() {
+            var cover = document.getElementById('vsl-cover');
+            var blocker = document.getElementById('vsl-blocker');
+            var iframe = document.getElementById('vsl-iframe');
+            if (cover) cover.style.display = 'none';
+            if (blocker) blocker.style.display = 'block';
+            if (iframe) {
+              iframe.src = "https://player.vimeo.com/video/1225405238?autoplay=1&muted=0&controls=0&title=0&byline=0&portrait=0&sidedock=0&keyboard=0&pip=0&dnt=1&playsinline=1";
+            }
+          }
+        </script>
+
+        <div style="background: #0A1224; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; border-top: 1px solid #334155;">
+          <div style="text-align: left;">
+            <div style="color: #FCD34D; font-family: monospace; font-size: 12px; font-weight: bold;">
+              APRESENTAÇÃO COMPLETA DO ESQUADRÃO COD-E
+            </div>
+            <div style="color: #CBD5E1; font-size: 13px; margin-top: 2px;">
+              A rota de 2 anos para morar legalmente na Espanha com agentes treinados.
+            </div>
+          </div>
+          <a href="https://pay.cakto.com.br/3e3f9px_1093826" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #DC2626, #B91C1C); color: #FFF; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(252,211,77,0.6); box-shadow: 0 0 25px rgba(220,38,38,0.7);">
+            QUERO MEU TIME DE AGENTES ↗
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <a href="https://pay.cakto.com.br/3e3f9px_1093826" target="_blank" class="btn-cta" style="margin-bottom: 12px;">
+          🛡️ QUERO MEU TIME DE AGENTES AGORA
+        </a>
+        <div style="font-size: 13px; color: #64748B; margin-top: 8px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;">
+          <span style="color: #047857; font-weight: 700;">✓ Acesso vitalício aos 7 agentes</span>
+          <span style="color: var(--red); font-weight: 700;">🔒 O risco é meu: 7 dias de garantia</span>
+          <span style="color: var(--navy); font-weight: 700;">Apenas 12x de R$ 29,64 ou R$ 297 à vista</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- O TIME DE SUPER-HERÓIS (ESQUADRÃO COD-E) -->
+  <section style="padding: 70px 0; background: var(--navy-deep); color: #FFFFFF;" id="esquadrao">
+    <div class="container">
+      <div class="text-center" style="max-width: 650px; margin: 0 auto 40px;">
+        <span style="font-family: monospace; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #FCA5A5; background: rgba(163,30,34,0.3); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 12px;">
+          O Esquadrão COD-E · Mascotes da Confraria
+        </span>
+        <h2 style="font-size: 38px; color: #FFFFFF; margin-bottom: 12px;">
+          Sete agentes.<br>Um esquadrão.<br><span style="color: var(--red-bright);">Nenhuma etapa sozinho.</span>
+        </h2>
+        
+        <!-- DESTAQUE: ESSE PODE SER O SEU TIME AGORA -->
+        <div style="display: inline-block; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 10px 18px; margin: 8px auto 16px;">
+          <div style="font-size: 14px; font-weight: 800; color: #FCD34D; letter-spacing: 0.05em; text-transform: uppercase;">
+            ⚡ ESSE PODE SER O SEU TIME NA ESPANHA A PARTIR DE HOJE
+          </div>
+          <div style="font-size: 12px; color: #CBD5E1; margin-top: 4px;">
+            Acesso imediato liberado · Vagas limitadas para a turma atual
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        
+          <div class="agent-card featured" onclick="openAgentModal('capitao')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#01</span>
+                <span style="font-size: 10px; background: var(--red); color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  ⭐ Comandante
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #A31E22, #DC2626); border: 2px solid #F59E0B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  C
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">O CAPITÃO</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Por onde começar · estratégia e ordem da travessia</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                O cérebro do esquadrão, e o único que enxerga o tabuleiro inteiro. Ele lê o seu caso de ponta a ponta — idade, profissão, formação, reserva, família, urgência — e monta o seu plano de travessia em ordem: o que se faz agora, o que se faz depois, e o que você pode simplesmente parar de se preocupar por enquanto. Depois ele aciona os outros seis. Manda o ESTRATEGISTA encontrar a sua via, o DESPACHANTE abrir a pasta certa, o FINANCEIRO fechar a conta. Você não precisa saber com qual agente falar — o CAPITÃO sabe.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('estrategista')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#02</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  E
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">O ESTRATEGISTA</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Qual visto é o seu · a porta certa pro seu perfil</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                Existe uma porta pra cada perfil, e uma que abre mais fácil que as outras. Ele cruza a sua situação com as vias disponíveis e devolve as que realmente se aplicam a você, em ordem de probabilidade, com o que falta pra cada uma e o que te desqualifica em cada uma — incluindo o critério que quase ninguém olha na hora de escolher: o que cada porta significa pro seu tempo do lado de lá.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('despachante')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#03</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  D
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">O DESPACHANTE</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Sua papelada, na ordem certa · documentos e prazos</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                Apostila de Haia, tradução juramentada, antecedentes criminais, certidões, diploma e histórico, passaporte, seguro-saúde e seguro viagem, procuração pra quem fica, documentos das crianças e do pet. Ele monta a sua lista pela via escolhida e te diz o que fazer primeiro — porque documento tem prazo, um depende do outro, e papel vencido derruba processo que levou meses pra montar. Tudo o que se resolve com o pé ainda no Brasil passa por ele.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('financeiro')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#04</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  F
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">O FINANCEIRO</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Quanto custa de verdade · em euro e em real</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                A conta da travessia inteira, cenário por cenário — sozinho, casal, com filho. Comprovação de meios exigida pela via escolhida, custo dos documentos, passagens, os três primeiros meses do outro lado (que é onde a maioria quebra), fiança e depósito do aluguel, câmbio e remessa, reserva de emergência. E a conta que ninguém faz na hora de sonhar: o custo de voltar, se der errado.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('bussola')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#05</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  B
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">A BÚSSOLA</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Onde morar · a cidade, o bairro e o muro do aluguel</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                Ela cruza o seu perfil — profissão, orçamento, família, clima, ritmo — com as cidades reais da Espanha, e vai até o bairro. Custo de vida comparado, perfil de cada zona, onde os brasileiros já estão e onde compensa não estar. E a parte que ninguém conta: alugar sem holerite espanhol e sem fiador é o gargalo de verdade de quem chega. Ela te mostra quais portais usar, como funcionam fiança e depósito, o que um proprietário espanhol pede de um recém-chegado, e as saídas legítimas de quem ainda não tem contrato — temporada, coliving, aluguel de quarto, aval bancário.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('joselito')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#06</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  J
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">JOSELITO</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">O Seu Amigão da Espanha · Dicas de Ouro, Roteiros & Costumes Reais</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                O Joselito é aquele amigão gente boa que já mora na Espanha há anos e te recebe com um abraço e um café con leche na mão. Ele te dá as melhores dicas de ouro que não estão em guia nenhum: roteiros secretos de fim de semana, onde comer tapas autênticas pagando pouco, os costumes e gírias locais pra você não passar vergonha, por que o comércio fecha na siesta e como usar o 'Menú del Día' pra economizar centenas de euros por mês. Com ele, você se sente em casa desde o primeiro dia.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+          <div class="agent-card " onclick="openAgentModal('comissario')">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 12px; font-weight: bold; color: #94A3B8;">#07</span>
+                <span style="font-size: 10px; background: #1E293B; color: #FFF; padding: 2px 8px; border-radius: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid #475569;">
+                  Super Agente
+                </span>
+              </div>
+              <div style="text-align: center; margin-bottom: 14px;">
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: #1E293B; border: 2px solid #64748B; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #FFF; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                  CB
+                </div>
+                <h3 style="font-size: 20px; font-weight: bold; color: #FFFFFF;">O COMISSÁRIO DE BORDO</h3>
+                <span style="font-size: 11px; text-transform: uppercase; color: #94A3B8; font-weight: bold; display: block; margin-top: 2px;">Do embarque ao pouso · a semana do voo e a imigração</span>
+              </div>
+              <p style="font-size: 12px; color: #CBD5E1; line-height: 1.5; margin-bottom: 14px; text-align: center;">
+                Ele te pega na semana mais ansiosa da travessia e não solta até você pisar do outro lado. Checklist impresso vs celular, franquia e peso de bagagem, o que levar na mala de mão de mudança (e nunca despachar), conferência final dos seguros obrigatórios e como se portar com tranquilidade na cabine de imigração respondendo com a verdade técnica.
+              </p>
+            </div>
+            <div style="border-top: 1px solid #334155; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--amber); font-weight: bold;">
+              <span>Abrir ficha do herói</span>
+              <span>→</span>
+            </div>
+          </div>
+        
+      </div>
+
+      <div class="text-center" style="margin-top: 48px;">
+        <a href="https://pay.cakto.com.br/3e3f9px_1093826" target="_blank" class="btn-cta">
+          ⚡ CONVOCAR MEU TIME DE SUPER AGENTES
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRÁFICOS E DADOS COMPARATIVOS: BRASIL 🇧🇷 vs ESPANHA 🇪🇸 -->
+  <section style="padding: 60px 0; background: #FAF7F2; border-bottom: 1px solid var(--line);">
+    <div class="container">
+      <div class="text-center" style="max-width: 650px; margin: 0 auto 36px;">
+        <span style="font-family: monospace; font-size: 12px; font-weight: bold; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 6px;">
+          INDICADORES REAIS & AUDITADOS
+        </span>
+        <h2 style="font-size: 30px; color: var(--navy);">
+          A diferença real entre viver em alerta e viver em paz
+        </h2>
+        <p style="font-size: 14px; color: var(--gray); margin-top: 8px;">
+          Dados oficiais e auditados pelos órgãos governamentais de estatística da Espanha (INE, Eurostat) e do Brasil (IBGE, IPEA).
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Longevidade -->
+        <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 18px; padding: 24px;">
+          <span style="font-size: 11px; font-family: monospace; color: var(--gray); text-transform: uppercase;">INE Espanha vs IBGE Brasil</span>
+          <h3 style="font-size: 20px; color: var(--navy); margin: 6px 0 10px;">Esperança de Vida</h3>
+          <div style="font-size: 34px; font-weight: 900; color: var(--red); margin-bottom: 8px;">+8,0 anos</div>
+          <p style="font-size: 13px; color: var(--gray); margin-bottom: 16px;">
+            Mais 8 anos ao lado dos seus netos com saúde pública universal e alimentação mediterrânea.
+          </p>
+          <div style="background: #F8F5EF; padding: 14px; border-radius: 12px; border: 1px solid #EAE3D6;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>🇪🇸 <strong>Espanha (INE)</strong></span><span style="color:#059669; font-family: monospace; font-weight:bold;">84,0 anos</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+              <div style="width: 100%; height: 100%; background: #059669;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>🇧🇷 <strong>Brasil (IBGE)</strong></span><span style="color:#DC2626; font-family: monospace; font-weight:bold;">76,0 anos</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden;">
+              <div style="width: 88%; height: 100%; background: #DC2626;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cidadania -->
+        <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 18px; padding: 24px;">
+          <span style="font-size: 11px; font-family: monospace; color: var(--gray); text-transform: uppercase;">Art. 22.1 Código Civil Espanhol</span>
+          <h3 style="font-size: 20px; color: var(--navy); margin: 6px 0 10px;">Cidadania Ibero-Americana</h3>
+          <div style="font-size: 34px; font-weight: 900; color: var(--amber); margin-bottom: 8px;">Apenas 2 Anos</div>
+          <p style="font-size: 13px; color: var(--gray); margin-bottom: 16px;">
+            Brasileiros têm o menor prazo de toda a Europa para ter o passaporte europeu na mão.
+          </p>
+          <div style="background: #F8F5EF; padding: 14px; border-radius: 12px; border: 1px solid #EAE3D6;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>🇪🇸 <strong>Espanha (Brasileiros)</strong></span><span style="color:#059669; font-family: monospace; font-weight:bold;">2 Anos</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+              <div style="width: 20%; height: 100%; background: #059669;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>🇪🇺 <strong>Regra Geral Europa</strong></span><span style="color:#DC2626; font-family: monospace; font-weight:bold;">10 Anos</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden;">
+              <div style="width: 100%; height: 100%; background: #DC2626;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segurança -->
+        <div style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 18px; padding: 24px;">
+          <span style="font-size: 11px; font-family: monospace; color: var(--gray); text-transform: uppercase;">Eurostat vs IPEA / FBSP</span>
+          <h3 style="font-size: 20px; color: var(--navy); margin: 6px 0 10px;">Segurança Pública</h3>
+          <div style="font-size: 34px; font-weight: 900; color: #059669; margin-bottom: 8px;">34x Mais Seguro</div>
+          <p style="font-size: 13px; color: var(--gray); margin-bottom: 16px;">
+            Celular na mão no transporte público e volta a pé à meia-noite sem medo de assalto.
+          </p>
+          <div style="background: #F8F5EF; padding: 14px; border-radius: 12px; border: 1px solid #EAE3D6;">
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span>🇧🇷 <strong>Brasil (IPEA)</strong></span><span style="color:#DC2626; font-family: monospace; font-weight:bold;">20,4 / 100k</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+              <div style="width: 90%; height: 100%; background: #DC2626;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+              <span style="color:#059669; font-weight:bold;">🇪🇸 Espanha (Eurostat)</span><span style="color:#059669; font-weight:bold; font-family: monospace;">0,6 / 100k</span>
+            </div>
+            <div style="height: 10px; background: #E0D7C6; border-radius: 5px; overflow: hidden;">
+              <div style="width: 6%; height: 100%; background: #059669;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINOS DA TRAVESSIA: MAPA DINÂMICO PRIMEIRO, TRÍADE PRINCIPAL E OUTROS POLOS -->
+  <section style="padding: 60px 0; background: #F4EFE6; border-bottom: 1px solid var(--line);" id="destinos">
+    <div class="container">
+      <div class="text-center" style="max-width: 700px; margin: 0 auto 36px;">
+        <span style="font-family: monospace; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); display: block; margin-bottom: 8px;">
+          OS DESTINOS DA TRAVESSIA
+        </span>
+        <h2 style="font-size: 32px; color: var(--navy); margin-bottom: 12px;">
+          Uma rota real, segura e perfeitamente possível com o planejamento certo.
+        </h2>
+        <p style="font-size: 15px; color: var(--gray);">
+          A escolha da cidade define a sua rotina, o custo de vida e a velocidade da sua adaptação. Explore o <strong>Mapa Interativo</strong> em primeiro lugar e veja em seguida os detalhes da <strong>Tríade Principal de Desembarque</strong>:
+        </p>
+      </div>
+
+      <!-- 1. MAPA DINÂMICO DA ESPANHA COM INTERAÇÃO (PRIMEIRO) -->
+      <div style="background: #10192E; border: 1px solid #334155; border-radius: 24px; padding: 24px; color: #FFF; margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+          <div>
+            <span style="font-family: monospace; font-size: 11px; color: #FDE68A; text-transform: uppercase;">NAVEGAÇÃO GEOGRÁFICA</span>
+            <h3 style="font-size: 20px; font-weight: bold; margin-top: 2px;">Mapa Interativo das Cidades Espanholas</h3>
+          </div>
+          <span style="font-size: 12px; color: #94A3B8;">Passe o mouse pelos pontos para ver o polo</span>
+        </div>
+
+        <div style="position: relative; max-width: 540px; margin: 0 auto; aspect-ratio: 4/3; background: #0A101D; border-radius: 16px; border: 1px solid #1E293B; overflow: hidden; padding: 12px;">
+          <svg viewBox="0 0 500 380" style="width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 55 110 L 105 115 L 115 170 L 125 240 L 95 300 L 75 305 L 55 270 L 45 190 Z" fill="#0D1525" stroke="#1E293B" stroke-width="1.5" opacity="0.6"/>
+            <text x="75" y="210" fill="#334155" font-size="10" font-weight="bold" text-anchor="middle">PORTUGAL</text>
+            <path d="M 60 70 C 100 65, 140 60, 200 60 C 240 60, 260 55, 290 65 C 320 75, 360 85, 415 90 L 425 110 C 420 140, 400 170, 395 210 C 390 230, 370 255, 345 275 C 320 295, 275 315, 240 325 C 200 335, 180 330, 160 320 C 140 310, 125 305, 120 280 C 115 220, 105 160, 95 115 C 80 110, 65 95, 60 70 Z" fill="#18233A" stroke="#334B73" stroke-width="2"/>
+            <ellipse cx="435" cy="220" rx="16" ry="11" fill="#18233A" stroke="#334B73" stroke-width="1.5"/>
+            <text x="250" y="30" fill="#384C6E" font-size="10" font-weight="bold" text-anchor="middle">MAR CANTÁBRICO</text>
+            <text x="440" y="160" fill="#384C6E" font-size="10" font-weight="bold" text-anchor="middle">MEDITERRÂNEO</text>
+          </svg>
+
+          <!-- PINS DO MAPA COM HOVER DINÂMICO -->
+          <div style="position: absolute; left: 82%; top: 35%; transform: translate(-50%, -50%); cursor: pointer;" title="Barcelona: Polo Cosmopolita">
+            <span style="display: block; width: 14px; height: 14px; background: #DC2626; border: 2px solid #FDE68A; border-radius: 50%; box-shadow: 0 0 10px #DC2626;"></span>
+            <span style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-size: 9px; background: rgba(0,0,0,0.8); color: #FFF; padding: 1px 4px; border-radius: 4px; white-space: nowrap;">Barcelona</span>
+          </div>
+
+          <div style="position: absolute; left: 48%; top: 49%; transform: translate(-50%, -50%); cursor: pointer;" title="Madrid: Centro Financeiro">
+            <span style="display: block; width: 14px; height: 14px; background: #DC2626; border: 2px solid #FDE68A; border-radius: 50%; box-shadow: 0 0 10px #DC2626;"></span>
+            <span style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-size: 9px; background: rgba(0,0,0,0.8); color: #FFF; padding: 1px 4px; border-radius: 4px; white-space: nowrap;">Madrid</span>
+          </div>
+
+          <div style="position: absolute; left: 71%; top: 57%; transform: translate(-50%, -50%); cursor: pointer;" title="Valencia: 300 Dias de Sol">
+            <span style="display: block; width: 14px; height: 14px; background: #DC2626; border: 2px solid #FDE68A; border-radius: 50%; box-shadow: 0 0 10px #DC2626;"></span>
+            <span style="position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-size: 9px; background: rgba(0,0,0,0.8); color: #FFF; padding: 1px 4px; border-radius: 4px; white-space: nowrap;">Valencia</span>
+          </div>
+
+          <div style="position: absolute; left: 39%; top: 84%; transform: translate(-50%, -50%); cursor: pointer;" title="Málaga: Silicon Valley do Sul">
+            <span style="display: block; width: 10px; height: 10px; background: #22D3EE; border-radius: 50%;"></span>
+            <span style="position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #CBD5E1; white-space: nowrap;">Málaga</span>
+          </div>
+
+          <div style="position: absolute; left: 27%; top: 79%; transform: translate(-50%, -50%); cursor: pointer;" title="Sevilha: Capital Andaluza">
+            <span style="display: block; width: 10px; height: 10px; background: #22D3EE; border-radius: 50%;"></span>
+            <span style="position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #CBD5E1; white-space: nowrap;">Sevilha</span>
+          </div>
+
+          <div style="position: absolute; left: 13%; top: 20%; transform: translate(-50%, -50%); cursor: pointer;" title="Galícia: Custo Acessível">
+            <span style="display: block; width: 10px; height: 10px; background: #22D3EE; border-radius: 50%;"></span>
+            <span style="position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #CBD5E1; white-space: nowrap;">Galícia</span>
+          </div>
+
+          <div style="position: absolute; left: 52%; top: 16%; transform: translate(-50%, -50%); cursor: pointer;" title="Bilbao: Maior Renda Média">
+            <span style="display: block; width: 10px; height: 10px; background: #22D3EE; border-radius: 50%;"></span>
+            <span style="position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #CBD5E1; white-space: nowrap;">Bilbao</span>
+          </div>
+
+          <div style="position: absolute; left: 65%; top: 34%; transform: translate(-50%, -50%); cursor: pointer;" title="Zaragoza: Trem-bala Central">
+            <span style="display: block; width: 10px; height: 10px; background: #22D3EE; border-radius: 50%;"></span>
+            <span style="position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #CBD5E1; white-space: nowrap;">Zaragoza</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. A TRÍADE PRINCIPAL EM MÁXIMO DESTAQUE (BARCELONA, MADRID, VALENCIA) -->
+      <div style="margin-bottom: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 20px; color: var(--navy); font-weight: bold;">
+            ⭐ A Tríade Principal de Desembarque
+          </h3>
+          <span style="font-size: 11px; font-family: monospace; color: var(--red); font-weight: bold; background: rgba(163,30,34,0.1); padding: 3px 10px; border-radius: 12px;">
+            80% dos Brasileiros Escolhem Aqui
+          </span>
+        </div>
+
+        <div class="grid-3">
+          
+            <div style="background: #FFFFFF; border: 2px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--line)'">
+              <div style="position: relative; height: 190px; overflow: hidden; background: #0F172A;">
+                <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=80" alt="Barcelona" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);"></div>
+                <div style="position: absolute; top: 10px; left: 10px; background: var(--red); color: #FFF; font-size: 10px; font-weight: bold; font-family: monospace; padding: 3px 8px; border-radius: 6px;">
+                  Top #1 · Cosmopolita
+                </div>
+                <div style="position: absolute; bottom: 10px; left: 14px; right: 14px; color: #FFF;">
+                  <span style="font-size: 10px; font-family: monospace; color: #FDE68A; text-transform: uppercase;">CATALUÑA · CAPITAL MEDITERRÂNEA</span>
+                  <h4 style="font-size: 22px; font-weight: bold; margin-top: 2px;">Barcelona</h4>
+                </div>
+              </div>
+              <div style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 12px; font-weight: bold; color: var(--red); margin-bottom: 6px;">
+                    Hub tecnológico europeu, praias urbanas e alta oferta internacional.
+                  </div>
+                  <p style="font-size: 13px; color: #3E3A35; line-height: 1.5; margin-bottom: 14px;">
+                    O café no balcão de pedra do bairro, a brisa do mar descendo pela avenida e a segurança de voltar a pé para casa às dez da noite sem olhar para trás.
+                  </p>
+                </div>
+                <div style="border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <span style="color: #64748B;">Aluguel (2Q): <strong>€ 1.400 - 1.800/mês</strong></span>
+                  <span style="color: var(--red); font-weight: bold; font-style: italic;">Analisar ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div style="background: #FFFFFF; border: 2px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--line)'">
+              <div style="position: relative; height: 190px; overflow: hidden; background: #0F172A;">
+                <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=800&q=80" alt="Madrid" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);"></div>
+                <div style="position: absolute; top: 10px; left: 10px; background: var(--red); color: #FFF; font-size: 10px; font-weight: bold; font-family: monospace; padding: 3px 8px; border-radius: 6px;">
+                  Top #2 · Carreira
+                </div>
+                <div style="position: absolute; bottom: 10px; left: 14px; right: 14px; color: #FFF;">
+                  <span style="font-size: 10px; font-family: monospace; color: #FDE68A; text-transform: uppercase;">COMUNIDAD DE MADRID · CENTRO ECONÔMICO</span>
+                  <h4 style="font-size: 22px; font-weight: bold; margin-top: 2px;">Madrid</h4>
+                </div>
+              </div>
+              <div style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 12px; font-weight: bold; color: var(--red); margin-bottom: 6px;">
+                    Sede de multinacionais, maiores faixas salariais e conexões globais.
+                  </div>
+                  <p style="font-size: 13px; color: #3E3A35; line-height: 1.5; margin-bottom: 14px;">
+                    O ritmo cosmopolita das grandes alamedas, o metrô pontual que cruza a capital em vinte minutos e a certeza de viver no centro onde circulam os maiores salários.
+                  </p>
+                </div>
+                <div style="border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <span style="color: #64748B;">Aluguel (2Q): <strong>€ 1.300 - 1.750/mês</strong></span>
+                  <span style="color: var(--red); font-weight: bold; font-style: italic;">Analisar ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div style="background: #FFFFFF; border: 2px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='var(--line)'">
+              <div style="position: relative; height: 190px; overflow: hidden; background: #0F172A;">
+                <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Valencia-_Plaza_del_Ayuntamiento_%2825311977285%29.jpg/960px-Valencia-_Plaza_del_Ayuntamiento_%2825311977285%29.jpg" alt="Valencia" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);"></div>
+                <div style="position: absolute; top: 10px; left: 10px; background: var(--red); color: #FFF; font-size: 10px; font-weight: bold; font-family: monospace; padding: 3px 8px; border-radius: 6px;">
+                  Top #3 · Família & Sol
+                </div>
+                <div style="position: absolute; bottom: 10px; left: 14px; right: 14px; color: #FFF;">
+                  <span style="font-size: 10px; font-family: monospace; color: #FDE68A; text-transform: uppercase;">COMUNIDAD VALENCIANA · QUALIDADE DE VIDA</span>
+                  <h4 style="font-size: 22px; font-weight: bold; margin-top: 2px;">Valencia</h4>
+                </div>
+              </div>
+              <div style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-size: 12px; font-weight: bold; color: var(--red); margin-bottom: 6px;">
+                    Equilíbrio perfeito de metrópole, custo de vida e praia.
+                  </div>
+                  <p style="font-size: 13px; color: #3E3A35; line-height: 1.5; margin-bottom: 14px;">
+                    Mais de trezentos dias de sol ao ano, os 9km verdes dos jardins do Turia e o custo de vida equilibrado que devolve o tempo para almoçar com calma com os filhos.
+                  </p>
+                </div>
+                <div style="border-top: 1px solid var(--line); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <span style="color: #64748B;">Aluguel (2Q): <strong>€ 900 - 1.250/mês</strong></span>
+                  <span style="color: var(--red); font-weight: bold; font-style: italic;">Analisar ➔</span>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- 3. OUTROS DESTINOS ESTRATÉGICOS (ABAIXO E MENORES, COM FOTOS PEQUENAS LATERAIS) -->
+      <div>
+        <div style="margin-bottom: 16px;">
+          <h3 style="font-size: 20px; color: var(--navy); font-weight: bold;">
+            Outros Destinos Estratégicos na Espanha (Menor Custo de Vida)
+          </h3>
+          <p style="font-size: 13px; color: var(--gray); margin-top: 4px;">
+            Aluguéis até 45% mais acessíveis e alta qualidade de vida:
+          </p>
+        </div>
+
+        <div class="grid-2">
+          
+            <div class="city-card-small">
+              <img src="https://images.unsplash.com/photo-1568084680786-a84f91d1153c?auto=format&fit=crop&w=300&q=80" alt="Málaga & Costa del Sol" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Málaga & Costa del Sol</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 850 - 1.200
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  ANDALUZIA · POLO TECNOLÓGICO & MAR
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  O Vale do Silício do sul da Europa. Sede de gigantes de tecnologia (Google, Vodafone), clima temperado e custo atrativo à beira-mar.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Silicon Valley Espanhol</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://images.unsplash.com/photo-1509840841025-9088ba78a826?auto=format&fit=crop&w=300&q=80" alt="Galícia (Vigo & Santiago)" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Galícia (Vigo & Santiago)</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 600 - 850
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  GALÍCIA · NATUREZA & CUSTO ACESSÍVEL
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  Gastronomia farta, segurança total e aluguéis até 45% mais baixos que Madrid. Laços históricos profundos com a comunidade brasileira.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Custo Acessível & Calma</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Basilica_del_Pilar_%28Zaragoza%2C_Aragon%29.jpg/960px-Basilica_del_Pilar_%28Zaragoza%2C_Aragon%29.jpg" alt="Zaragoza" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Zaragoza</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 700 - 950
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  ARAGÃO · ESTRATÉGIA LOGÍSTICA
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  A 1h15 de trem-bala entre Madrid e Barcelona. Custo de moradia moderado, grandes universidades e vida tranquila.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Polo Logístico Central</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg/960px-Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg" alt="Sevilha" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Sevilha</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 750 - 1.050
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  ANDALUZIA · HISTÓRIA & ENGENHARIA
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  Ruas históricas de laranjeiras, arquitetura imponente e acolhimento caloroso. Polo aeroespacial e aluguéis menores.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Capital Andaluza</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Vista_de_Alicante%2C_Espa%C3%B1a%2C_2014-07-04%2C_DD_67-70_PAN.JPG/960px-Vista_de_Alicante%2C_Espa%C3%B1a%2C_2014-07-04%2C_DD_67-70_PAN.JPG" alt="Alicante & Costa Blanca" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Alicante & Costa Blanca</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 750 - 1.000
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  COMUNIDAD VALENCIANA · ÁGUAS CALMAS
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  Águas cristalinas, aeroporto internacional com voos para toda a Europa e uma das melhores proporções de custo e lazer.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Costa Blanca & Praia</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Guggenheim_Museum_Bilbao%2C_exterior.jpg/960px-Guggenheim_Museum_Bilbao%2C_exterior.jpg" alt="Bilbao & País Basco" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Bilbao & País Basco</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 950 - 1.350
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  PAÍS BASCO · INDÚSTRIA & ALTA RENDA
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  A mais alta média salarial da Espanha e o melhor sistema de saúde público regional. Referência global em inovação.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Maior Renda Média</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+            <div class="city-card-small">
+              <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Alhambra_evening_panorama_Mirador_San_Nicolas_sRGB-1.jpg/960px-Alhambra_evening_panorama_Mirador_San_Nicolas_sRGB-1.jpg" alt="Granada" class="city-thumb">
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <h4 style="font-size: 16px; color: var(--navy); font-weight: bold;">Granada</h4>
+                  <span style="font-size: 10px; background: #DCFCE7; color: #166534; padding: 2px 6px; border-radius: 6px; font-weight: bold;">
+                    € 650 - 900
+                  </span>
+                </div>
+                <span style="font-family: monospace; font-size: 9px; color: var(--red); font-weight: bold; display: block; margin-bottom: 4px;">
+                  ANDALUZIA · UNIVERSIDADE & SERRA
+                </span>
+                <p style="font-size: 12px; color: #3E3A35; line-height: 1.4; margin-bottom: 6px;">
+                  Aos pés das montanhas de neve e a 40 minutos do mar. Vida universitária vibrante, aluguéis convidativos e cultura rica.
+                </p>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--red); font-weight: bold;">
+                  <span>Cidade Histórica & Charme</span>
+                  <span style="color: #94A3B8;">BÚSSOLA analisa ➔</span>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- Box 8.000 municípios -->
+      <div style="margin-top: 30px; background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <strong style="color: var(--navy); font-size: 15px;">Mais de 8.000 municípios espanhóis ao seu alcance</strong>
+          <p style="color: var(--gray); font-size: 13px; margin-top: 4px;">
+            A Espanha possui 17 Comunidades Autônomas com leis regionais e benefícios próprios. O Agente BÚSSOLA (#05) cruza seu perfil, profissão e orçamento para encontrar o município perfeito para sua família.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEM TREINOU O ESQUADRÃO: VITOR DIORRANES & AUTORIDADE -->
+  <section style="padding: 70px 0; background: #10192E; color: #FFFFFF; border-bottom: 1px solid #334155;" id="autoridade">
+    <div class="container">
+      <div class="hero-grid" style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center;">
+        <div>
+          <div style="border-radius: 24px; overflow: hidden; border: 2px solid #475569; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative;">
+            <img src="https://i.imgur.com/YJLVRfk.jpg" alt="Vitor Diorranes - Fundador do Código Europa" referrerpolicy="no-referrer" style="width: 100%; height: 380px; object-fit: cover; object-position: top;">
+            <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.7); padding: 4px 10px; border-radius: 8px; font-size: 11px; color: #F59E0B; font-weight: bold;">
+              Barcelona · Espanha
+            </div>
+          </div>
+        </div>
+        <div>
+          <span style="display: inline-block; font-family: monospace; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: #FCA5A5; background: rgba(163,30,34,0.3); padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;">
+            Mentor & Criador do Esquadrão COD-E
+          </span>
+          <h2 style="font-size: 32px; line-height: 1.25; color: #FFFFFF; margin-bottom: 16px;">
+            &ldquo;Eu não li sobre a Espanha na internet. Eu moro nela e treino quem decide vencer.&rdquo;
+          </h2>
+          <p style="font-size: 15px; color: #CBD5E1; margin-bottom: 16px; line-height: 1.6;">
+            Mineiro, gestor internacional, <strong>morou em 5 outros países e visitou 33</strong>, hoje vivendo em Barcelona. Carreira construída dentro de lugares onde pouca gente senta: <strong>Cruzeiro EC, Seleção Brasileira de Futsal (CBFS) e Penalty</strong>. Vestiário, escritório e mesa de negociação internacional.
+          </p>
+          <p style="font-size: 14px; color: #CBD5E1; margin-bottom: 20px; line-height: 1.6;">
+            Quando desembarcou na Espanha com a família, aprendeu cada etapa no próprio couro: contratos de aluguel, empadronamento, homologação de diplomas e protocolos do Ministério de Justiça. Criou a <strong>Confraria Europa</strong> para transformar a imigração em uma ciência exata.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://www.linkedin.com/in/vitordiorranes/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #0A66C2; color: #FFF; text-decoration: none; padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: bold;">
+              LinkedIn Vitor Diorranes ↗
+            </a>
+            <a href="https://www.instagram.com/vitordiorranes/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(45deg, #F09433, #E6683C, #DC2743, #CC2366, #BC1888); color: #FFF; text-decoration: none; padding: 10px 18px; border-radius: 12px; font-size: 13px; font-weight: bold;">
+              Instagram @vitordiorranes ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFRARIA EUROPA EM AÇÃO (DEPOIMENTOS EM ESTEIRA HORIZONTAL ESTILO WHATSAPP CLARO) -->
+  <section style="padding: 60px 0; background: #F5F8F6; color: #0F172A; border-top: 1px solid #D1E0D6; border-bottom: 1px solid #D1E0D6;" id="confraria-em-acao">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 30px auto;">
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(37,211,102,0.18); border: 1px solid rgba(37,211,102,0.5); color: #075E54; font-size: 11px; font-family: monospace; font-weight: 800; text-transform: uppercase; padding: 5px 16px; border-radius: 20px; margin-bottom: 12px;">
+          💬 DEPOIMENTOS & PROVAS REAIS NO WHATSAPP
+        </div>
+        <h2 style="font-size: 32px; color: #0F172A; font-weight: 800; line-height: 1.25; margin-bottom: 8px;">
+          Depoimentos Reais no WhatsApp
+        </h2>
+        <div style="font-size: 12px; color: #075E54; font-family: monospace; font-weight: bold;">
+          👉 Arraste para o lado para ver todos os relatos na esteira
+        </div>
+      </div>
+
+      <!-- Esteira Horizontal de Depoimentos com Estilo WhatsApp Claro -->
+      <div style="display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; margin-bottom: 30px;">
+        <!-- Depoimento 1: Cássio Guimarães -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #1
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  CG
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Cássio Guimarães</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Brasil · Família & Mudança</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 00:21</span>
+                <span style="color: #64748B;">Diagnóstico Europa</span>
+              </div>
+              <img src="https://i.imgur.com/FaX8G9X.png" alt="Print Cássio Guimarães" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Bacana! Me estimulou, pois acredito que é a decisão mais acertada para a fase da vida familiar.&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">00:21 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">24 de ago.</span>
+          </div>
+        </div>
+
+        <!-- Depoimento 2: Ednara -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #2
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  ED
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Ednara</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Brasil · Aluna Confraria</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 00:58</span>
+                <span style="color: #64748B;">Tira-Dúvidas</span>
+              </div>
+              <img src="https://i.imgur.com/YvAxueY.png" alt="Print Ednara" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Ameiii. Muito obrigada Deu pra tirar bastante dúvidas&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">00:58 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">00:58 ✓✓</span>
+          </div>
+        </div>
+
+        <!-- Depoimento 3: Aluna Portugal -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #3
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  PT
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Aluna na Europa (Portugal)</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Portugal · Europa</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 23:23</span>
+                <span style="color: #64748B;">qui., 3 de set.</span>
+              </div>
+              <img src="https://i.imgur.com/sfxmw4k.png" alt="Print Aluna Portugal" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Vamos juntos sim. Obrigada!!! Vai dar certo sim!! Tenho fé e foco nisso 🙏😊 Obrigada pelo apoio !!&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">23:23 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">23:23 ✓✓</span>
+          </div>
+        </div>
+
+        <!-- Depoimento 4: Tatiana -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #4
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  TA
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Tatiana</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Brasil · Participante Live</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 00:23</span>
+                <span style="color: #64748B;">Ao vivo</span>
+              </div>
+              <img src="https://i.imgur.com/a4GmaSR.png" alt="Print Tatiana" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Estava na Live... Muito boa. Agradeço a oportunidade de tirar dúvidas.&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">00:23 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">00:23 ✓✓</span>
+          </div>
+        </div>
+
+        <!-- Depoimento 5: Planejamento Estratégico -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #5
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  AC
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Aluno Confraria</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Brasil · Fase Inicial</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 18:14</span>
+                <span style="color: #64748B;">Planejamento</span>
+              </div>
+              <img src="https://i.imgur.com/R3soKsj.png" alt="Print Planejamento Estratégico" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Ajudou, com certeza. Então estamos na fase iniciante... o planejamento estratégico vai ser fundamental.&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">18:14 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">18:14 ✓✓</span>
+          </div>
+        </div>
+
+        <!-- Depoimento 6: Informações da Rota / Áudios -->
+        <div style="flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; background: #FFFFFF; border: 2px solid #C6E0CE; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 10px; font-family: monospace; font-weight: bold; color: #075E54; background: rgba(37,211,102,0.15); padding: 2px 8px; border-radius: 6px;">
+                Depoimento #6
+              </span>
+              <span style="color: #F59E0B; font-size: 11px;">★★★★★</span>
+            </div>
+
+            <div style="background: #008069; color: #FFFFFF; padding: 8px 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; color: #008069; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; font-size: 11px;">
+                  MC
+                </div>
+                <div>
+                  <h4 style="font-size: 13px; color: #FFFFFF; font-weight: bold; margin: 0;">Membro da Confraria</h4>
+                  <div style="font-size: 10px; color: #D1FAE5;">Brasil · Orientações da Rota</div>
+                </div>
+              </div>
+              <span style="font-size: 9px; font-family: monospace; color: #FFFFFF; background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 10px;">
+                Verificado
+              </span>
+            </div>
+
+            <!-- WhatsApp Real Print Container -->
+            <div style="background: #EFEAE2; border: 1px solid #CBD5E1; border-radius: 12px; overflow: hidden; margin-bottom: 12px;">
+              <div style="background: #F0F2F5; padding: 6px 10px; font-size: 10px; color: #075E54; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 1px solid #CBD5E1;">
+                <span>💬 WhatsApp · 19:19</span>
+                <span style="color: #64748B;">Áudios e Apoio</span>
+              </div>
+              <img src="https://i.imgur.com/NJDGX7b.png" alt="Print Informações da Rota" style="width: 100%; height: 180px; object-fit: cover; object-position: top; display: block;" loading="lazy">
+            </div>
+
+            <div style="background: #D9FDD3; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid #B2E69E;">
+              <p style="font-size: 13px; color: #0F172A; line-height: 1.5; margin: 0; font-weight: 500;">
+                &ldquo;Muito obg meu amigo pelas informações 🤝&rdquo;
+              </p>
+              <div style="text-align: right; font-size: 10px; color: #53BDEB; margin-top: 4px; font-family: monospace; font-weight: bold;">19:19 ✓✓</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #075E54; font-family: monospace; font-weight: bold; border-top: 1px solid #E2E8F0; padding-top: 8px; display: flex; justify-content: space-between;">
+            <span>● Print WhatsApp Preservado</span>
+            <span style="color: #64748B;">19:19 ✓✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prova de Comunidade Ativa (Reações ao Vivo estilo chat Claro) -->
+      <div style="background: #FFFFFF; border: 2px solid #D1E0D6; border-radius: 20px; padding: 24px 30px; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="font-size: 18px; color: #0F172A; font-weight: bold; margin: 0 0 4px 0;">
+              🟢 Reações ao Vivo na Comunidade
+            </h3>
+            <p style="font-size: 12px; color: #64748B; margin: 0;">
+              Mensagens instantâneas registradas no chat durante transmissões oficiais da Confraria
+            </p>
+          </div>
+          <span style="font-size: 11px; font-family: monospace; background: rgba(37,211,102,0.15); color: #075E54; border: 1px solid rgba(37,211,102,0.4); padding: 4px 10px; border-radius: 8px; font-weight: bold;">
+            Burburinho da Comunidade
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+          <div style="background: #F8FAF9; border: 1px solid #D5E4D8; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 12px; font-weight: bold; color: #0F172A;">July G.</span>
+              <span style="font-size: 9px; font-family: monospace; background: rgba(37,211,102,0.2); color: #075E54; padding: 2px 6px; border-radius: 10px; font-weight: bold;">Ao vivo</span>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #0F172A; font-weight: 500;">
+              &ldquo;Live maravilhosa!!!! 👏👏👏&rdquo;
+            </div>
+          </div>
+
+          <div style="background: #F8FAF9; border: 1px solid #D5E4D8; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 12px; font-weight: bold; color: #0F172A;">Moisés B.</span>
+              <span style="font-size: 9px; font-family: monospace; background: rgba(37,211,102,0.2); color: #075E54; padding: 2px 6px; border-radius: 10px; font-weight: bold;">Ao vivo</span>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #0F172A; font-weight: 500;">
+              &ldquo;Obrigado pela live!!!&rdquo;
+            </div>
+          </div>
+
+          <div style="background: #F8FAF9; border: 1px solid #D5E4D8; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 12px; font-weight: bold; color: #0F172A;">Rafael M.</span>
+              <span style="font-size: 9px; font-family: monospace; background: rgba(37,211,102,0.2); color: #075E54; padding: 2px 6px; border-radius: 10px; font-weight: bold;">Ao vivo</span>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #0F172A; font-weight: 500;">
+              &ldquo;Top 🚀&rdquo;
+            </div>
+          </div>
+
+          <div style="background: #F8FAF9; border: 1px solid #D5E4D8; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 12px; font-weight: bold; color: #0F172A;">Darlan P.</span>
+              <span style="font-size: 9px; font-family: monospace; background: rgba(37,211,102,0.2); color: #075E54; padding: 2px 6px; border-radius: 10px; font-weight: bold;">Ao vivo</span>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #0F172A; font-weight: 500;">
+              &ldquo;Top demais, clareza total!&rdquo;
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 11px; color: #64748B; text-align: center; font-weight: 500;">
+          🔒 Nomes e contatos preservados em conformidade com as diretrizes de privacidade.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA & COMPRA EM DESTAQUE -->
+  <section style="padding: 80px 0; background: linear-gradient(180deg, #FAF7F2 0%, #EAE4D7 100%);" id="oferta">
+    <div class="container" style="max-width: 820px;">
+      <div style="background: #0E1729; border: 2px solid var(--red); border-radius: 28px; padding: 48px 32px; color: #FFFFFF; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.4); position: relative;">
+
+        <!-- DESTAQUE MÁXIMO: O RISCO É TODO MEU -->
+        <div style="background: linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(245,158,11,0.05) 100%); border: 2px solid #F59E0B; border-radius: 20px; padding: 24px; margin-bottom: 28px; text-align: center;">
+          <div style="display: inline-block; background: #F59E0B; color: #0E1729; font-family: monospace; font-size: 11px; font-weight: 900; text-transform: uppercase; padding: 4px 12px; border-radius: 12px; margin-bottom: 10px;">
+            🛡️ GARANTIA BLINDADA DE 7 DIAS
+          </div>
+          <h3 style="font-size: 26px; color: #FDE68A; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">
+            O RISCO É TODO MEU
+          </h3>
+          <p style="font-size: 14px; color: #E2E8F0; max-width: 600px; margin: 0 auto; line-height: 1.6; font-weight: 500;">
+            Entre agora, ative seus 7 Super Agentes, teste suas rotas e consulte o ecossistema. Se em até 7 dias você achar que o Código Europa não vale pelo menos 10 vezes o valor que pagou, <strong>eu devolvo 100% do seu dinheiro</strong> com um simples clique. Sem burocracia e sem perguntas.
+          </p>
+        </div>
+
+        <!-- DESTAQUE MÁXIMO: ACESSO VITALÍCIO -->
+        <div style="display: inline-block; background: rgba(16,185,129,0.2); border: 2px solid #10B981; padding: 8px 22px; border-radius: 30px; font-size: 13px; font-weight: 900; text-transform: uppercase; color: #6EE7B7; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(16,185,129,0.2);">
+          ✨ ACESSO VITALÍCIO · PAGAMENTO ÚNICO · SEM MENSALIDADES
+        </div>
+
+        <h2 style="font-size: 34px; color: #FFFFFF; margin-bottom: 8px;">
+          Esquadrão Código Europa · COD-E
+        </h2>
+        <p style="font-size: 14px; color: #94A3B8; margin-bottom: 28px;">
+          Os 7 Super Agentes de IA + Acesso à Confraria Europa (Os Argonautas)
+        </p>
+
+        <!-- Preço e Parcelas -->
+        <div style="background: #15223D; border: 1px solid #334155; border-radius: 20px; padding: 28px; max-width: 500px; margin: 0 auto 32px;">
+          <div style="font-size: 13px; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
+            Por apenas
+          </div>
+          <div style="font-size: 48px; font-weight: 900; color: #F59E0B; line-height: 1;">
+            12x R$ 29,64
+          </div>
+          <div style="font-size: 15px; color: #E2E8F0; margin-top: 8px;">
+            ou <strong>R$ 297,00 à vista</strong> no PIX ou Cartão
+          </div>
+
+          <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #334155; text-align: left; font-size: 13px; color: #CBD5E1; display: flex; flex-direction: column; gap: 8px;">
+            <div style="color: #FDE68A; font-weight: bold; background: rgba(245,158,11,0.1); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(245,158,11,0.3);">
+              ★ ACESSO VITALÍCIO: Pague uma única vez e tenha acesso perpétuo
+            </div>
+            <div>✓ <strong>7 Super Agentes COD-E</strong> com inteligência oficial das leis espanholas</div>
+            <div>✓ <strong>Confraria Europa:</strong> Comunidade ativa de brasileiros na Espanha</div>
+            <div>✓ <strong>O Risco é Todo Meu:</strong> Garantia incondicional de reembolso por 7 dias</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <div style="display: inline-block; background: rgba(163,30,34,0.3); border: 1px solid rgba(220,38,38,0.5); padding: 8px 18px; border-radius: 12px; margin-bottom: 16px;">
+            <span style="font-size: 14px; font-weight: 800; color: #FCA5A5; letter-spacing: 0.05em; text-transform: uppercase;">
+              UM PASSO DE CORAGEM PODE MUDAR GERAÇÕES.
+            </span>
+          </div>
+        </div>
+
+        <!-- Botão Principal de Compra -->
+        <div>
+          <a href="https://pay.cakto.com.br/3e3f9px_1093826" target="_blank" class="btn-cta" style="width: 100%; max-width: 500px; font-size: 18px; padding: 22px;">
+            ⚡ QUERO MEU TIME DE AGENTES AGORA
+          </a>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 24px; font-size: 12px; color: #94A3B8;">
+          <span>🔒 Pagamento Seguro Cakto</span>
+          <span>🛡️ 7 Dias de Garantia Total</span>
+          <span>♾️ Acesso Vitalício</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 70px 0; background: var(--cream);" id="faq">
+    <div class="container" style="max-width: 780px;">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <span style="font-family: monospace; font-size: 12px; font-weight: bold; text-transform: uppercase; color: var(--red);">
+          DÚVIDAS FREQUENTES
+        </span>
+        <h2 style="font-size: 32px; color: var(--navy); margin-top: 8px;">
+          Perguntas Frequentes sobre o Esquadrão
+        </h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              O Esquadrão COD-E garante que o meu visto ou nacionalidade serão aprovados?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              Não. E desconfie imediatamente de qualquer profissional ou empresa que prometa aprovação garantida. Quem defere ou indefere vistos é exclusivamente o Ministério de Assuntos Exteriores da Espanha por meio de seus Consulados, e quem concede nacionalidade é o Ministério da Justiça espanhol. O papel do Esquadrão COD-E é garantir que você não cometa erros técnicos, não perca prazos de certidões, escolha a via com maior probabilidade estatística para o seu perfil e chegue ao consulado com a pasta blindada.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              Como funciona na prática a regra dos 2 anos para brasileiros?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              O artigo 22 do Código Civil espanhol estabelece que cidadãos originários de países ibero-americanos (como o Brasil) necessitam de apenas 2 anos de residência legal e continuada em território espanhol para poder protocolar o pedido de nacionalidade por residência. Para a maioria esmagadora dos outros estrangeiros do mundo, esse prazo é de 10 anos. Trata-se do prazo legal para protocolar o pedido, cumprindo os requisitos de integração e ausência de antecedentes penais.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              Quanto dinheiro eu preciso ter pra começar?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              O FINANCEIRO simula a conta inteira cenário por cenário — sozinho, casal ou família com filhos. Ele calcula a comprovação de meios exigida pela via consular, custo da documentação, passagens, reserva para os primeiros 3 meses e garantias de moradia, em euro e em real. Você descobre a conta real com os dois pés no chão antes de gastar um centavo.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              Preciso saber espanhol?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              Para viver e resolver o dia a dia, você vai aprendendo na prática com a convivência. Para a nacionalidade espanhola por residência, cidadãos brasileiros precisam comprovar o nível A2 no exame DELE (além da prova de conhecimentos CCSE), e o ESTRATEGISTA te diz exatamente qual exigência de idioma existe na sua via e quando encarar.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              Os 7 agentes funcionam no meu celular?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              Sim. O acesso ao Esquadrão COD-E é 100% online, compatível com computadores, tablets e smartphones (Android e iOS). Você tem o time disponível 24 horas por dia, 7 dias por semana, para tirar dúvidas práticas na hora em que elas surgem — seja durante a preparação no Brasil, seja de madrugada em Valência.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              O que é a Confraria Europa incluída no pacote?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              A Confraria Europa é a nossa comunidade fechada de Argonautas — os brasileiros que estão fazendo ou já concluíram a travessia. Nela, os membros trocam experiências práticas em tempo real, dicas de bairros, contatos locais de confiança e atualizações do dia a dia nas principais cidades da Espanha, sob a supervisão das diretrizes do Código Europa.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              Existe alguma mensalidade ou taxa oculta além dos R$ 297?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              Nenhuma. O pagamento de R$ 297 é único e concede acesso vitalício aos 7 agentes de inteligência artificial do Esquadrão COD-E, incluindo todas as atualizações de metodologia e acesso integral à Confraria Europa. Não há cobranças recorrentes nem assinaturas surpresa.
+            </p>
+          </details>
+        
+          <details style="background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; cursor: pointer;">
+            <summary style="font-weight: 700; color: var(--navy); font-size: 16px; outline: none;">
+              E se eu entrar e achar que não é para o meu momento?
+            </summary>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--gray); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 12px;">
+              Você conta com a nossa Garantia Incondicional de 7 dias. Se por qualquer motivo você acessar os agentes e entender que não é para você, basta solicitar o reembolso dentro do prazo de 7 dias e 100% do seu dinheiro será devolvido sem perguntas e sem atrito. Quem assume o risco dessa decisão é o Vitor Diorranes.
+            </p>
+          </details>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 15. A ENTREGA DO MATERIAL (PRESENTE DO AGENTE 34) ═══════════ -->
+  <section class="deliver">
+    <div class="wrap">
+      <!-- Badge de Presente -->
+      <div class="gift-badge">
+        <span>🎁 PRESENTE LIBERADO · 100% GRATUITO</span>
+      </div>
+
+      <h2>5 Canais pra Começar na Espanha</h2>
+      <p class="subhead">
+        Dossiê oficial de reconhecimento preparado pelo <strong>Agente 34</strong> para quem quer encontrar vagas reais na Espanha.
+      </p>
+
+      <!-- Card Didático com Agente 34 -->
+      <div class="deliver-card">
+        <div class="deliver-agent-row">
+          <div class="agent-thumb-wrap">
+            <img src="/assets/agents/agente34.jpg" alt="Agente 34 - Buscador de Empregos" onerror="this.src='/assets/agents/agente34_job_1788960561179.jpg'">
+            <div class="agent-gift-tag">🎁</div>
+          </div>
+          <div class="agent-info">
+            <div class="agent-desc-head">
+              <span class="agent-pill">AGENTE 34</span>
+              <span class="agent-badge">PDF · 8 PÁGINAS</span>
+            </div>
+            <h3>Reconhecimento de Campo</h3>
+            <p>Buscador de Empregos e Vagas Ocultas no mercado espanhol</p>
+          </div>
+        </div>
+
+        <!-- Tópicos Didáticos -->
+        <div class="deliver-bullets">
+          <div class="b-item">
+            <span class="check">✓</span>
+            <span><b>1. Portal Oficial do SEPE:</b> Como usar a porta do governo espanhol e comprovar busca ativa.</span>
+          </div>
+          <div class="b-item">
+            <span class="check">✓</span>
+            <span><b>2. Os 4 Maiores Portais:</b> InfoJobs, Indeed, Turijobs e JobToday na ordem certa.</span>
+          </div>
+          <div class="b-item">
+            <span class="check">✓</span>
+            <span><b>3. Plano Prático de 7 Dias:</b> Sequência passo a passo para enviar suas primeiras candidaturas.</span>
+          </div>
+        </div>
+
+        <!-- Botão de Download -->
+        <a class="btn-download" href="/5-canais-codigo-europa.pdf" data-ebook download="5-canais-codigo-europa.pdf">
+          <span>↓ Baixar Guia Gratuito (PDF)</span>
+        </a>
+        <div class="btn-download-note">🎁 Presente 100% gratuito · Download imediato sem cadastro</div>
+      </div>
+
+      <!-- Ponte Curta para o Esquadrão Inteiro -->
+      <div class="bridge">
+        <p>
+          O guia do Agente 34 mostra <b>onde procurar vagas</b>. Para estruturar seu <b>visto, documentação, custo de vida e moradia</b> com acompanhamento diário, tenha o esquadrão completo ao seu lado.
+        </p>
+        <a class="btn-bridge" href="https://pay.cakto.com.br/3e3f9px_1093826" data-checkout target="_blank">
+          QUERO O ESQUADRÃO INTEIRO — R$ 297 →
+        </a>
+        <div class="btn-bridge-note">acesso imediato · 7 dias de garantia · vitalício</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY CTA FLUTUANTE -->
+  <div class="sticky-bar">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="width: 10px; height: 10px; border-radius: 50%; background: #22C55E; display: inline-block;"></span>
+      <div style="color: #FFF; font-size: 13px;">
+        <strong>Esquadrão COD-E: 7 Super Agentes</strong> · <span style="color: #F59E0B;">Acesso Vitalício + Confraria</span>
+      </div>
+    </div>
+    <a href="https://pay.cakto.com.br/3e3f9px_1093826" target="_blank" class="btn-cta" style="padding: 12px 28px; font-size: 14px;">
+      QUERO MEU TIME DE AGENTES AGORA →
+    </a>
+  </div>
+
+  <script>
+    const CHECKOUT = "https://pay.cakto.com.br/3e3f9px_1093826";
+    const EBOOK = "/5-canais-codigo-europa.pdf";
+    document.querySelectorAll('[data-ebook]').forEach(function(el){ el.href = EBOOK; });
+    document.querySelectorAll('[data-checkout]').forEach(function(el){ el.href = CHECKOUT; });
+
+    // Modal Ficha do Herói
+    const agentsData = [{"id":"capitao","number":"01","name":"O CAPITÃO","initial":"C","role":"Por onde começar · estratégia e ordem da travessia","isCommander":true,"enemy":"Começar pela etapa errada","resolves":"O cérebro do esquadrão, e o único que enxerga o tabuleiro inteiro. Ele lê o seu caso de ponta a ponta — idade, profissão, formação, reserva, família, urgência — e monta o seu plano de travessia em ordem: o que se faz agora, o que se faz depois, e o que você pode simplesmente parar de se preocupar por enquanto. Depois ele aciona os outros seis. Manda o ESTRATEGISTA encontrar a sua via, o DESPACHANTE abrir a pasta certa, o FINANCEIRO fechar a conta. Você não precisa saber com qual agente falar — o CAPITÃO sabe.","relieves":"Tira das suas costas a paralisia do primeiro passo e a confusão de quem tem dez dúvidas ao mesmo tempo.","quote":"Tenho 34 anos, sou enfermeira, sem cidadania, R$ 20 mil guardados e uma filha de 7. Por onde eu começo?","costAlone":"Sozinho, esse é o erro mais caro da travessia: começar pela etapa errada — e descobrir isso um ano e várias taxas depois."},{"id":"estrategista","number":"02","name":"O ESTRATEGISTA","initial":"E","role":"Qual visto é o seu · a porta certa pro seu perfil","isCommander":false,"enemy":"Tentar forçar a porta de outra pessoa","resolves":"Existe uma porta pra cada perfil, e uma que abre mais fácil que as outras. Ele cruza a sua situação com as vias disponíveis e devolve as que realmente se aplicam a você, em ordem de probabilidade, com o que falta pra cada uma e o que te desqualifica em cada uma — incluindo o critério que quase ninguém olha na hora de escolher: o que cada porta significa pro seu tempo do lado de lá.","relieves":"Tira das suas costas a ilusão de conselhos genéricos de fórum e a tentativa de forçar visto de turista sem amparo legal.","quote":"Trabalho remoto pra uma empresa brasileira. Isso me serve como base de pedido, ou eu preciso de outra via?","costAlone":"Sozinho: tentar forçar a porta de outra pessoa — o erro mais comum e o mais caro da internet brasileira."},{"id":"despachante","number":"03","name":"O DESPACHANTE","initial":"D","role":"Sua papelada, na ordem certa · documentos e prazos","isCommander":false,"enemy":"Documento vencido e semanas de garimpo","resolves":"Apostila de Haia, tradução juramentada, antecedentes criminais, certidões, diploma e histórico, passaporte, seguro-saúde e seguro viagem, procuração pra quem fica, documentos das crianças e do pet. Ele monta a sua lista pela via escolhida e te diz o que fazer primeiro — porque documento tem prazo, um depende do outro, e papel vencido derruba processo que levou meses pra montar. Tudo o que se resolve com o pé ainda no Brasil passa por ele.","relieves":"Tira das suas costas o desespero de comparecer ao consulado e ser recusado por uma certidão emitida fora do prazo legal.","quote":"Meu diploma precisa de apostila? E o atestado de antecedentes, vale por quanto tempo?","costAlone":"Sozinho: semanas de garimpo e o risco de refazer tradução juramentada que já custou caro uma vez."},{"id":"financeiro","number":"04","name":"O FINANCEIRO","initial":"F","role":"Quanto custa de verdade · em euro e em real","isCommander":false,"enemy":"Descobrir a conta real quando o dinheiro já acabou","resolves":"A conta da travessia inteira, cenário por cenário — sozinho, casal, com filho. Comprovação de meios exigida pela via escolhida, custo dos documentos, passagens, os três primeiros meses do outro lado (que é onde a maioria quebra), fiança e depósito do aluguel, câmbio e remessa, reserva de emergência. E a conta que ninguém faz na hora de sonhar: o custo de voltar, se der errado.","relieves":"Tira das suas costas a surpresa com cauções de moradia, taxas alfandegárias e perdas severas em operações de câmbio impulsivas.","quote":"Quanto eu preciso ter na conta pra isso não virar tragédia no terceiro mês?","costAlone":"Sozinho: descobrir a conta real quando o dinheiro já acabou — do outro lado do oceano, que é o pior lugar do mundo pra fazer essa descoberta."},{"id":"bussola","number":"05","name":"A BÚSSOLA","initial":"B","role":"Onde morar · a cidade, o bairro e o muro do aluguel","isCommander":false,"enemy":"Escolher a cidade pela foto e assinar contrato que vai querer desfazer","resolves":"Ela cruza o seu perfil — profissão, orçamento, família, clima, ritmo — com as cidades reais da Espanha, e vai até o bairro. Custo de vida comparado, perfil de cada zona, onde os brasileiros já estão e onde compensa não estar. E a parte que ninguém conta: alugar sem holerite espanhol e sem fiador é o gargalo de verdade de quem chega. Ela te mostra quais portais usar, como funcionam fiança e depósito, o que um proprietário espanhol pede de um recém-chegado, e as saídas legítimas de quem ainda não tem contrato — temporada, coliving, aluguel de quarto, aval bancário.","relieves":"Tira das suas costas o erro clássico de alugar à distância em bairros barulhentos, sem transporte ou longe de boas escolas públicas.","quote":"Barcelona ou Valência pra quem tem filho pequeno e não vai ter contrato de trabalho no começo?","costAlone":"Sozinho: escolher a cidade pela foto e assinar um contrato de um ano que você vai passar doze meses querendo desfazer."},{"id":"joselito","number":"06","name":"JOSELITO","initial":"J","role":"O Seu Amigão da Espanha · Dicas de Ouro, Roteiros & Costumes Reais","isCommander":false,"enemy":"Viver como turista perdido e pagar caro em tudo","resolves":"O Joselito é aquele amigão gente boa que já mora na Espanha há anos e te recebe com um abraço e um café con leche na mão. Ele te dá as melhores dicas de ouro que não estão em guia nenhum: roteiros secretos de fim de semana, onde comer tapas autênticas pagando pouco, os costumes e gírias locais pra você não passar vergonha, por que o comércio fecha na siesta e como usar o 'Menú del Día' pra economizar centenas de euros por mês. Com ele, você se sente em casa desde o primeiro dia.","relieves":"Tira das suas costas a solidão e a sensação de ser um estrangeiro deslocado, te transformando num verdadeiro local.","quote":"Ô parceiro! Onde você vai jantar às sete da tarde? Vem cá que vou te mostrar o roteiro de verdade e os melhores lugares da cidade!","costAlone":"Sozinho: morar meses numa cidade incrível sem viver a cultura de verdade e caindo em armadilhas de turista."},{"id":"comissario","number":"07","name":"O COMISSÁRIO DE BORDO","initial":"CB","role":"Do embarque ao pouso · a semana do voo e a imigração","isCommander":false,"enemy":"Improvisar na fila mais importante da sua vida","resolves":"Ele te pega na semana mais ansiosa da travessia e não solta até você pisar do outro lado. Checklist impresso vs celular, franquia e peso de bagagem, o que levar na mala de mão de mudança (e nunca despachar), conferência final dos seguros obrigatórios e como se portar com tranquilidade na cabine de imigração respondendo com a verdade técnica.","relieves":"Tira das suas costas o pânico da véspera do voo e a insegurança na cabine de controle de passaportes.","quote":"O que eu levo na bagagem de mão e como respondo com segurança se me chamarem na imigração?","costAlone":"Sozinho: improvisar na fila mais importante da sua vida, depois de meses planejando tudo o resto."}];
+    function openAgentModal(id) {
+      const agent = agentsData.find(a => a.id === id);
+      if (!agent) return;
+      alert("Super Agente #" + agent.number + ": " + agent.name + " (" + agent.role + ")\n\n" + agent.resolves + "\n\nFrase do Herói: " + agent.signaturePhrase);
+    }
+  </script>
+</body>
+</html>
