@@ -41,13 +41,13 @@ export const FloatingCta: React.FC<FloatingCtaProps> = ({ onCtaClick }) => {
                 </span>
               </div>
               <p className="text-[11px] sm:text-xs text-amber-200 font-medium">
-                🛡️ Risco Zero: 7 dias de garantia incondicional · R$ 297 ou 12x
+                🛡️ Risco Zero: 7 dias de garantia incondicional · R$ 197 ou 12x
               </p>
             </div>
           </div>
           <div className="sm:hidden text-right">
             <span className="text-[10px] text-slate-300 block">12x de</span>
-            <span className="text-sm font-extrabold text-amber-300">R$ 29,64</span>
+            <span className="text-sm font-extrabold text-amber-300">R$ 24,27</span>
           </div>
         </div>
 

@@ -32,9 +32,9 @@ export const FAQ_DATA: FaqItem[] = [
       "A Confraria Europa é a nossa comunidade fechada de Argonautas — os brasileiros que estão fazendo ou já concluíram a travessia. Nela, os membros trocam experiências práticas em tempo real, dicas de bairros, contatos locais de confiança e atualizações do dia a dia nas principais cidades da Espanha, sob a supervisão das diretrizes do Código Europa."
   },
   {
-    question: "Existe alguma mensalidade ou taxa oculta além dos R$ 297?",
+    question: "Existe alguma mensalidade ou taxa oculta além dos R$ 197?",
     answer:
-      "Nenhuma. O pagamento de R$ 297 é único e concede acesso vitalício aos 7 agentes de inteligência artificial do Esquadrão COD-E, incluindo todas as atualizações de metodologia e acesso integral à Confraria Europa. Não há cobranças recorrentes nem assinaturas surpresa."
+      "Nenhuma. O pagamento de R$ 197 é único e concede acesso vitalício aos 7 agentes de inteligência artificial do Esquadrão COD-E, incluindo todas as atualizações de metodologia e acesso integral à Confraria Europa. Não há cobranças recorrentes nem assinaturas surpresa."
   },
   {
     question: "E se eu entrar e achar que não é para o meu momento?",

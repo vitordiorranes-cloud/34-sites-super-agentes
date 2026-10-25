@@ -314,11 +314,11 @@ export default function App() {
               <div className="flex items-baseline justify-center gap-2 mb-1">
                 <span className="text-xl font-light text-amber-400">12x de</span>
                 <span className="font-serif-brand text-4xl sm:text-5xl font-black text-white">
-                  R$ 29,64
+                  R$ 24,27
                 </span>
               </div>
               <p className="text-xs text-amber-200 font-semibold">
-                ou R$ 297,00 à vista no PIX ou Cartão
+                ou R$ 197,00 à vista no PIX ou Cartão
               </p>
 
               <div className="text-left text-xs space-y-2.5 mt-4 pt-4 border-t border-slate-700 text-slate-300">
@@ -521,7 +521,7 @@ export default function App() {
               data-checkout="true"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 rounded-xl bg-[#DC2626] hover:bg-[#B91C1C] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl transform hover:scale-105 transition-all cursor-pointer"
             >
-              <span>Quero o Esquadrão Inteiro — R$ 297</span>
+              <span>Quero o Esquadrão Inteiro — R$ 197</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="text-[11px] text-[#6B655D] mt-2 font-mono">
